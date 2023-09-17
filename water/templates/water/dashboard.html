@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+    
+<h2>{{ translated_title }}</h2>
+<h3>
+  <span class="smaller-text">{{ translated_average_prefix }}</span>
+  {{ translated_average_value }}
+</h3>
+
+
+    <canvas id="myChart" width="400" height="200"></canvas>
+
+   
+         
+
+{% endblock %}
+
+{% block extra_scripts %}
+
+<script>
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: [{% for day, amount in daily_consumption %}'{{ day }}'{% if not forloop.last %}, {% endif %}{% endfor %}],
+        
+        datasets: [{
+          label: '{{ amount_consumed }} ({{ unit }})',
+          data: [{% for day, amount in daily_consumption %}{{ amount }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 2,
+          fill: false,
+          backgroundColor: 'rgba(125, 222, 222, 0.7)',  // This is the fill color inside the bars
+
+        }]
+      },
+      options: {
+        plugins: {
+      legend: {
+        labels: {
+          color: 'white'   // This makes the legend labels (from datasets) white
+        }
+      }
+    },
+    scales: {
+        y: {
+            grid: {
+                drawOnChartArea: false, // this will hide the vertical grid lines
+                drawBorder: false,
+                 // this will hide the y-axis line
+            },
+            ticks: {
+                color: 'white'         // This will make the tick labels white
+            }
+        },
+        x: {
+            grid: {
+                drawBorder: false       // optional: this will hide the x-axis line
+            },
+            ticks: {
+                color: 'white'         // This will make the tick labels white
+            }
+        }
+    }
+}
+
+    });
+  </script>
+    
+
+
+    
+{% endblock %}
+
+
