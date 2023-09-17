@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% load bootstrap5 %}{% load i18n %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'accounts/css/styles.css' %}" />
+
+{% block title %}Log in{% endblock %}
+{% block content %}
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-6 mx-auto"> <!-- 'mx-auto' centers the column -->
+          <h2>{% trans "Login to your account" %}</h2>
+          <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{{next}}" />
+              {% for field in form %}
+                {% bootstrap_field field layout='floating' %}
+              {% endfor %}
+              <div class="d-flex justify-content-center">
+                  <button type="submit" class="btn btn-primary w-100">{% trans "Submit" %}</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
+
