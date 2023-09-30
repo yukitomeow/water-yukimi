@@ -1,0 +1,152 @@
+
+.dashboard-link {
+    color: black;
+    text-decoration: none;
+}
+
+.dashboard-link:hover {
+    color: gray;
+    text-decoration: underline;
+}
+
+@media (max-width: 991px) {
+    .navbar-collapse {
+        flex-direction: row;
+        justify-content: flex-end; /* 右端にアイテムを配置 */
+    }
+    .navbar-nav {
+        flex-direction: row;
+    }
+    .navbar-nav .nav-link {
+        padding-right: 0.5rem;
+    }
+}
+
+.footer .language-toggle {
+    display: flex;
+    align-items: center; /* 要素を中央揃えにする */
+}
+
+.footer .language-toggle p {
+    margin-right: 10px; /* 「言語変更」とボタンの間のスペース */
+}
+
+.footer .language-toggle button {
+    margin-right: 5px; /* ボタン間のスペース */
+}
+
+
+
+
+/* Explicitly apply padding to the footer, matching the navbar */
+.footer.container-fluid {
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+@media (max-width: 767px) {
+    .footer.container-fluid {
+        padding-left: 15px; /* Default padding for Bootstrap container */
+        padding-right: 15px; /* Default padding for Bootstrap container */
+    }
+}
+
+
+
+.footer .language-toggle button {
+    background: none;      /* 背景を削除 */
+    border: none;          /* ボーダーを削除 */
+    color: inherit;        /* 親要素と同じ文字色を使用 */
+    padding: 0;            /* パディングを削除 */
+    font: inherit;         /* 親要素と同じフォントを使用 */
+    cursor: pointer;       /* マウスカーソルをポインタに */
+    text-decoration: none; /* 下線などの装飾を削除 */
+    outline: none;         /* フォーカス時のアウトラインを削除 */
+}
+
+.footer .language-toggle button:hover,
+.footer .language-toggle button:focus {
+    color: #F26A66; /* ホバーやフォーカス時の色。任意で変更可能 */
+    text-decoration: underline; /* ホバーやフォーカス時に下線を追加 */
+}
+
+.bg-light {
+    background-color:  #F2827F !important;
+}
+
+
+
+body {
+    color: #000080;
+    background-color:  #F2827F
+    /* background-color: #000080; */
+}
+
+
+.navbar-coral-text {
+    color: #000080!important; /* Using !important to ensure the color is applied even if other styles exist. */
+}
+
+.navbar-coral-text:hover {
+    color:  #000080;
+}
+.navbar-coral-text:active {
+    color: #000080;
+}
+.navbar-coral-text:visited {
+    color: #000080;
+}
+
+input {
+    color: #000080;
+  }
+  
+  .btn-primary {
+    color: #000080;
+    background-color: #72F2E7;
+    border-color: #72F2E7;
+  }
+  .btn-primary:hover {
+    color: #000080;
+    background-color: #72F2E7;
+    border-color: #72F2E7;
+  }
+
+  /* Assuming you don't already have a rule for your form */
+form  {
+    width: 100%;
+    max-width: 450px; 
+
+   
+    padding: 10px; 
+    border-radius: 5px;  
+}
+
+@media screen and (min-width: 768px) {
+    form {
+        max-width: 550px;
+    }
+}
+
+/* styles.css */
+.container-fluid {
+    max-width: 90%; /* Adjust this percentage as needed. A lower percentage will result in more side spacing */
+  }
+  
+  @media (min-width: 768px) { /* Adjust this breakpoint as needed */
+    .container-fluid {
+      padding-left: 5vw; /* Left padding as percentage of viewport width */
+      padding-right: 5vw; /* Right padding as percentage of viewport width */
+    }
+  }
+
+  
+
+
+.smaller-text {
+    font-size: 0.6em; /* Adjust as necessary */
+}
+
+
+
+

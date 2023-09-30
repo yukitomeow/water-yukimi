@@ -14,6 +14,12 @@ from pathlib import Path
 import os
 from django.utils.translation import gettext_lazy as _
 import dj_database_url
+# django_project/settings.py
+from pathlib import Path
+from environs import Env
+
+env = Env()
+env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,16 +29,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-%wd3yft6e-ca3sh!q)z(w$$n0f_5=@da0efat-=rgueld_htw7"
-# SECRET_KEY = os.environ.get("SECRET_KEY","django-insecure-%wd3yft6e-ca3sh!q)z(w$$n0f_5=@da0efat-=rgueld_htw7")
+
+
+SECRET_KEY = env.str(
+  "SECRET_KEY", 
+  default="django-insecure-%wd3yft6e-ca3sh!q)z(w$$n0f_5=@da0efat-=rgueld_htw7",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 # vercel_app/settings.py
-ALLOWED_HOSTS = ["*"]
-
-
+ALLOWED_HOSTS = ["water-yukimi-db.fly.dev", "localhost", "127.0.0.1", 'water-yukimi.fly.dev' ]
+CSRF_TRUSTED_ORIGINS = ["https://water-yukimi-db.fly.dev", 'https://water-yukimi.fly.dev' ]  
 
 # Application definition
 
@@ -48,6 +57,7 @@ INSTALLED_APPS = [
     "bootstrap5",
     "accounts.apps.AccountsConfig",
     'widget_tweaks',
+    "whitenoise.runserver_nostatic", 
     # "water"
 ]
 
@@ -59,7 +69,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -108,10 +117,13 @@ WSGI_APPLICATION = "waterLog.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / "db.sqlite3",
+        # 'NAME': "/Users/YukimiOtagiri_1/CC copy/AfterCC/django/hello-django/db.sqlite3",
+        
     }
 }
 
@@ -171,3 +183,20 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}
+
+AUTH_USER_MODEL = 'auth.User'  # or if you have a custom user model
+
